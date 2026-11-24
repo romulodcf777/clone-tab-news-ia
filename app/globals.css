@@ -1,0 +1,58 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  min-height: 100vh;
+  padding: 32px 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+  background: #dcefeb;
+  color: #23423f;
+  font-family: Georgia, "Times New Roman", serif;
+  text-align: center;
+}
+h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 3rem); text-wrap: balance; }
+svg { width: 100%; max-width: 860px; height: auto; border-radius: 24px; }
+.nome { font: bold 28px Georgia, serif; fill: #23423f; text-anchor: middle; }
+
+.calopsita { animation: balanco 3s ease-in-out infinite; transform-origin: 400px 440px; }
+.falante { cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.falante:focus:not(:focus-visible) { outline: none; }
+/* Espreguiçada: abre a asa e estica a pata do mesmo lado */
+.asa { transform-origin: 444px 325px; transition: transform .7s ease-in-out; }
+.penas, .pata-repouso { transition: opacity .3s; }
+.penas { opacity: 0; }
+.pata-esticada { transform: scale(0); transform-origin: 425px 432px; transition: transform .7s ease-in-out; pointer-events: none; }
+.espreguicando .asa { transform: rotate(-52deg) scale(1.12); }
+.espreguicando .penas { opacity: 1; }
+.espreguicando .pata-repouso { opacity: 0; }
+.espreguicando .pata-esticada { transform: scale(1); }
+/* Expressões: trocam o rosto neutro pelo alternativo */
+.expressao { display: none; }
+[data-rosto] .neutro { display: none; }
+[data-rosto="desdem"] .desdem,
+[data-rosto="constrangido"] .constrangido,
+[data-rosto="pergunta"] .pergunta,
+[data-rosto="mau"] .mau { display: inline; }
+.balao { opacity: 0; pointer-events: none; transition: opacity .2s; }
+.balao.visivel { opacity: 1; }
+.balao text { font: bold 24px Georgia, serif; fill: #23423f; text-anchor: middle; }
+.balao .menor { font-size: 21px; }
+.olhos { animation: piscar 4s infinite; transform-box: fill-box; transform-origin: center; }
+@keyframes balanco { 0%, 100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+@keyframes piscar { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
+@media (prefers-reduced-motion: reduce) {
+  .calopsita, .olhos { animation: none; }
+  .asa, .penas, .pata-repouso, .pata-esticada { transition: none; }
+}
+
+.somente-leitor {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
