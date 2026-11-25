@@ -17,7 +17,7 @@ h1 { margin: 0; font-size: clamp(1.8rem, 5vw, 3rem); text-wrap: balance; }
 svg { width: 100%; max-width: 860px; height: auto; border-radius: 24px; }
 .nome { font: bold 28px Georgia, serif; fill: #23423f; text-anchor: middle; }
 
-.calopsita { animation: balanco 3s ease-in-out infinite; transform-origin: 400px 440px; }
+.calopsita { animation: balanco 3s ease-in-out infinite; transform-origin: 400px 440px; transition: scale .7s ease-in-out; }
 .falante { cursor: pointer; -webkit-tap-highlight-color: transparent; }
 .falante:focus:not(:focus-visible) { outline: none; }
 /* Espreguiçada: abre a asa e estica a pata do mesmo lado */
@@ -25,6 +25,8 @@ svg { width: 100%; max-width: 860px; height: auto; border-radius: 24px; }
 .penas, .pata-repouso { transition: opacity .3s; }
 .penas { opacity: 0; }
 .pata-esticada { transform: scale(0); transform-origin: 425px 432px; transition: transform .7s ease-in-out; pointer-events: none; }
+/* Joga o corpo pra frente: encolhe na vertical a partir dos pés, a cabeça desce e o corpo alarga, como se viesse em direção a quem olha */
+.espreguicando .calopsita { scale: 1.08 .86; }
 .espreguicando .asa { transform: rotate(-52deg) scale(1.12); }
 .espreguicando .penas { opacity: 1; }
 .espreguicando .pata-repouso { opacity: 0; }
@@ -45,7 +47,7 @@ svg { width: 100%; max-width: 860px; height: auto; border-radius: 24px; }
 @keyframes piscar { 0%, 94%, 100% { transform: scaleY(1); } 97% { transform: scaleY(.1); } }
 @media (prefers-reduced-motion: reduce) {
   .calopsita, .olhos { animation: none; }
-  .asa, .penas, .pata-repouso, .pata-esticada { transition: none; }
+  .calopsita, .asa, .penas, .pata-repouso, .pata-esticada { transition: none; }
 }
 
 .somente-leitor {
